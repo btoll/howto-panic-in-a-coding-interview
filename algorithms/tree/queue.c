@@ -4,7 +4,7 @@
 
 struct queue* create_queue() {
     struct queue *q;
-    if (!(q = malloc(sizeof(struct queue)))) {
+    if (!(q = (struct queue *) malloc(sizeof(struct queue)))) {
         fprintf(stderr, "Could not allocate memory for new queue!");
         exit(1);
     }
@@ -13,7 +13,7 @@ struct queue* create_queue() {
 
 struct queue_node* create_queue_node(struct tree_node *n) {
     struct queue_node *new_node;
-    if (!(new_node = malloc(sizeof(struct queue_node)))) {
+    if (!(new_node = (struct queue_node *) malloc(sizeof(struct queue_node)))) {
         fprintf(stderr, "Could not allocate memory for new node!");
         exit(1);
     }
@@ -48,6 +48,8 @@ struct queue* enqueue(struct queue *q, struct tree_node *n) {
         q->tail->next = new_node;
         q->tail = new_node;
     }
+
+    return q;
 }
 
 /*
